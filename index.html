@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emy Ihab Fayez — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:         #FAF8F4;
+      --bg2:        #F2EEE7;
+      --surface:    #FFFFFF;
+      --border:     #E2DBD0;
+      --teal:       #1D6A6A;
+      --teal-mid:   #2A8080;
+      --teal-light: #EAF4F4;
+      --terra:      #B05B3B;
+      --terra-lt:   #F5EBE6;
+      --ink:        #1C1C1C;
+      --body:       #4A4540;
+      --muted:      #8C847A;
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Outfit', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 4rem;
+      background: rgba(250,248,244,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.4rem; color: var(--teal); }
+    .nav-logo span { color: var(--terra); font-style: italic; }
+    .nav-links { display: flex; gap: 2.2rem; }
+    .nav-links a {
+      font-size: .78rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-stripe {
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg, transparent, transparent 28px,
+        rgba(29,106,106,.025) 28px, rgba(29,106,106,.025) 29px
+      );
+    }
+
+    .hero-deco {
+      position: absolute; right: -60px; top: 50%;
+      transform: translateY(-50%);
+      width: 500px; height: 500px; pointer-events: none;
+    }
+    .hd-ring {
+      position: absolute; border-radius: 50%; border: 1px solid;
+    }
+    .hd-ring:nth-child(1) { inset: 0; border-color: rgba(29,106,106,.13); background: radial-gradient(circle at 40% 40%, rgba(29,106,106,.05), transparent 70%); }
+    .hd-ring:nth-child(2) { inset: 55px; border-color: rgba(176,91,59,.1); }
+    .hd-ring:nth-child(3) { inset: 120px; border-color: rgba(29,106,106,.08); background: rgba(29,106,106,.03); }
+    .hd-dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--terra); top: 110px; right: 185px; opacity: .65; }
+
+    .hero-content { position: relative; max-width: 680px; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .7rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--terra); margin-bottom: 1.6rem;
+      animation: fadeUp .7s ease both;
+    }
+    .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--terra); }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 7vw, 5.8rem);
+      line-height: 1.02; font-weight: 400; color: var(--ink);
+      animation: fadeUp .7s .08s ease both;
+    }
+    .hero-name em { color: var(--teal); font-style: italic; }
+
+    .hero-role {
+      margin-top: 1.1rem; font-size: 1.05rem;
+      color: var(--muted); font-weight: 300; letter-spacing: .03em;
+      animation: fadeUp .7s .16s ease both;
+    }
+
+    .hero-desc {
+      margin-top: 1.3rem; max-width: 480px;
+      font-size: .95rem; color: var(--body); line-height: 1.85;
+      animation: fadeUp .7s .24s ease both;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap;
+      animation: fadeUp .7s .32s ease both;
+    }
+
+    .btn-fill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--teal); color: #fff;
+      padding: .8rem 2rem; font-size: .8rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      border: 2px solid var(--teal); transition: background .2s, transform .15s;
+    }
+    .btn-fill:hover { background: var(--teal-mid); transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .8rem 2rem; font-size: .8rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      border: 1.5px solid var(--border); color: var(--body);
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 4rem;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+      animation: fadeUp .7s .4s ease both;
+    }
+    .stat-num { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; color: var(--teal); line-height: 1; }
+    .stat-num sup { font-size: 1rem; color: var(--terra); }
+    .stat-label { font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-top: .2rem; }
+
+    /* SECTIONS */
+    section { padding: 6rem 4rem; }
+    .si { max-width: 1080px; margin: 0 auto; }
+
+    .sec-eyebrow {
+      display: inline-flex; align-items: center; gap: .7rem;
+      font-size: .7rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--terra); margin-bottom: .9rem;
+    }
+    .sec-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terra); }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400; color: var(--ink); line-height: 1.12; margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 5rem; align-items: start; }
+    .about-text p { color: var(--body); font-size: .95rem; margin-bottom: 1.1rem; }
+    blockquote.pq {
+      font-family: var(--serif); font-size: 1.45rem; font-style: italic;
+      color: var(--teal); border-left: 3px solid var(--terra);
+      padding: .4rem 0 .4rem 1.4rem; margin: 1.8rem 0; line-height: 1.45;
+    }
+    .info-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--teal); padding: 1.3rem 1.5rem;
+      transition: box-shadow .2s;
+    }
+    .info-card:hover { box-shadow: 0 4px 24px rgba(29,106,106,.08); }
+    .info-card h4 { font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); margin-bottom: .5rem; }
+    .info-card p { font-size: .88rem; color: var(--body); line-height: 1.6; }
+
+    /* SKILLS */
+    #skills { background: var(--bg); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 1.8rem; position: relative; overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .skill-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-mid));
+      transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(29,106,106,.1); }
+    .skill-card:hover::after { transform: scaleX(1); }
+    .sk-icon { font-size: 1.7rem; margin-bottom: 1rem; display: block; }
+    .skill-card h3 { font-size: .72rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); margin-bottom: .7rem; }
+    .skill-card p { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+
+    /* EXPERIENCE */
+    #experience { background: var(--bg2); }
+    .timeline { position: relative; padding-left: 2.4rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 4px; top: 8px; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--teal), rgba(29,106,106,0));
+    }
+    .tl-item { position: relative; padding-bottom: 2.8rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -2.4rem; top: 6px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--teal);
+      box-shadow: 0 0 0 4px rgba(29,106,106,.12);
+    }
+    .tl-date { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--terra); margin-bottom: .4rem; }
+    .tl-role { font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+    .tl-company { font-size: .85rem; color: var(--muted); margin: .15rem 0 .9rem; }
+    .tl-bullets { list-style: none; }
+    .tl-bullets li { font-size: .88rem; color: var(--body); padding: .2rem 0 .2rem 1.3rem; position: relative; }
+    .tl-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--teal); font-size: 1rem; line-height: 1.4; }
+
+    /* PROJECTS */
+    #projects { background: var(--bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 2rem; display: flex; flex-direction: column;
+      transition: transform .22s, box-shadow .22s;
+    }
+    .project-card:nth-child(odd)  { border-top: 3px solid var(--teal); }
+    .project-card:nth-child(even) { border-top: 3px solid var(--terra); }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(29,106,106,.1); }
+    .project-num { font-family: var(--serif); font-size: .85rem; color: var(--muted); margin-bottom: .9rem; }
+    .project-title { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: .6rem; line-height: 1.3; }
+    .project-desc { font-size: .85rem; color: var(--body); flex: 1; line-height: 1.7; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.3rem; }
+    .tag { font-size: .66rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .22rem .7rem; background: var(--teal-light); color: var(--teal); border-radius: 2px; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: .4rem; margin-top: 1.3rem;
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--teal); transition: color .2s, gap .2s;
+    }
+    .project-link:hover { color: var(--terra); gap: .7rem; }
+
+    /* CERTS */
+    #certifications { background: var(--bg2); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.1rem; }
+    .cert-card {
+      display: flex; align-items: flex-start; gap: 1.1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 1.3rem 1.5rem; transition: border-color .2s, box-shadow .2s;
+    }
+    .cert-card:hover { border-color: var(--teal); box-shadow: 0 6px 20px rgba(29,106,106,.07); }
+    .cert-icon-wrap {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--teal-light); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+    }
+    .cert-title { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: .2rem; line-height: 1.4; }
+    .cert-issuer { font-size: .77rem; color: var(--muted); }
+
+    /* CONTACT */
+    #contact { background: var(--teal); color: #fff; text-align: center; }
+    #contact .sec-eyebrow { color: rgba(255,255,255,.6); }
+    #contact .sec-eyebrow::before { background: rgba(255,255,255,.4); }
+    #contact .sec-title { color: #fff; margin-bottom: 1rem; }
+    .contact-sub { font-size: .95rem; color: rgba(255,255,255,.75); max-width: 440px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .8rem 1.8rem; border: 1.5px solid rgba(255,255,255,.3);
+      color: rgba(255,255,255,.9); font-size: .82rem; font-weight: 500;
+      transition: background .2s, border-color .2s;
+    }
+    .contact-link:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.7); }
+
+    /* FOOTER */
+    footer {
+      background: #163F3F; padding: 1.4rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .75rem; color: rgba(255,255,255,.45);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4.5rem 1.5rem; }
+      #hero { padding: 7rem 1.5rem 4rem; }
+      .hero-deco { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      footer { flex-direction: column; gap: .4rem; text-align: center; padding: 1.4rem; }
+    }
+    @media (max-width: 600px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Emy <span>Ihab</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certs</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-deco">
+    <div class="hd-ring"></div><div class="hd-ring"></div><div class="hd-ring"></div>
+    <div class="hd-dot"></div>
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow">Open to opportunities</div>
+    <h1 class="hero-name">Emy Ihab<br><em>Fayez</em></h1>
+    <p class="hero-role">Software Engineering Student · Flutter Developer · Full-Stack</p>
+    <p class="hero-desc">Building cross-platform mobile apps and full-stack web services with Flutter, .NET, and Spring Boot — driven by clean architecture and real-world impact.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-fill">View Projects →</a>
+      <a href="https://github.com/Emy-04" target="_blank" class="btn-ghost">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/emy-ehab/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">6<sup>+</sup></div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-num">3<sup>+</sup></div><div class="stat-label">Internships</div></div>
+      <div><div class="stat-num">3.32<sup>/4</sup></div><div class="stat-label">GPA</div></div>
+      <div><div class="stat-num">4<sup>+</sup></div><div class="stat-label">Certifications</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="si">
+    <div class="sec-eyebrow">Who I am</div>
+    <h2 class="sec-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a Software Engineering student at Cairo University's Faculty of Computer Science and Artificial Intelligence, graduating July 2026.</p>
+        <blockquote class="pq">"Building smart, scalable software with passion and precision."</blockquote>
+        <p>I specialize in cross-platform mobile development with Flutter, full-stack web applications, and backend REST services. Driven by curiosity — whether exploring new technologies, designing better UX, or improving architecture.</p>
+        <p>When I'm not coding, I enjoy reading about technology trends, solving logic puzzles, and learning new skills.</p>
+      </div>
+      <div class="info-cards">
+        <div class="info-card reveal d1">
+          <h4>Education</h4>
+          <p>B.Sc. Computer Science &amp; AI<br>Cairo University · GPA 3.32/4.0<br>Sep 2022 – Expected Jul 2026</p>
+        </div>
+        <div class="info-card reveal d2">
+          <h4>Languages</h4>
+          <p>Arabic — Native<br>English — Fluent<br>French — Very Good</p>
+        </div>
+        <div class="info-card reveal d3">
+          <h4>Location</h4>
+          <p>Cairo, Egypt<br>Open to remote &amp; on-site roles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="si">
+    <div class="sec-eyebrow">What I work with</div>
+    <h2 class="sec-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><span class="sk-icon">📱</span><h3>Mobile</h3><p>Flutter · Dart · BLoC · Cross-platform (Android, iOS, Desktop, Web)</p></div>
+      <div class="skill-card reveal d1"><span class="sk-icon">🌐</span><h3>Web &amp; Backend</h3><p>ASP.NET Core · Spring Boot · PHP · HTML/CSS · JavaScript · jQuery</p></div>
+      <div class="skill-card reveal d2"><span class="sk-icon">💾</span><h3>Databases</h3><p>MySQL · Firebase · SQL Server</p></div>
+      <div class="skill-card reveal"><span class="sk-icon">⌨️</span><h3>Languages</h3><p>Java · C# · Dart · C++ · C · Python · JavaScript</p></div>
+      <div class="skill-card reveal d1"><span class="sk-icon">🛠️</span><h3>Tools</h3><p>Git · Linux · Jira · Bugzilla</p></div>
+      <div class="skill-card reveal d2"><span class="sk-icon">🎨</span><h3>Design</h3><p>Figma · UI/UX · HCI · Wireframing · Prototyping</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="si">
+    <div class="sec-eyebrow">Where I've worked</div>
+    <h2 class="sec-title">Work Experience</h2>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">Jun 2025 – Dec 2025</div>
+        <div class="tl-role">Cross-Platform Mobile App Developer Intern</div>
+        <div class="tl-company">Digital Egypt Pioneers Initiative — Ministry of Communication &amp; IT</div>
+        <ul class="tl-bullets">
+          <li>Developed cross-platform mobile applications using Flutter and Dart</li>
+          <li>Applied BLoC state management and modern UI/UX practices in delivered projects</li>
+          <li>Completed structured training in mobile architecture and cross-platform deployment</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Jun – Aug 2024</div>
+        <div class="tl-role">Web Development Intern</div>
+        <div class="tl-company">MCV — Web &amp; Software Solutions</div>
+        <ul class="tl-bullets">
+          <li>Built web application modules with ASP.NET Core MVC; implemented CRUD operations with SQL Server and OOP design principles</li>
+          <li>Completed training in C#, ASP.NET Core, HTML/CSS, and SQL; built data-driven web pages</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">Jul 2024</div>
+        <div class="tl-role">Web Development Intern</div>
+        <div class="tl-company">Mintra</div>
+        <ul class="tl-bullets">
+          <li>Built server-rendered views with ASP.NET Razor and ASP.NET Core, including data binding and form validation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="si">
+    <div class="sec-eyebrow">What I've built</div>
+    <h2 class="sec-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-num">01 — Flutter</div>
+        <div class="project-title">TMDB Movie Explorer App</div>
+        <p class="project-desc">Cross-platform Flutter/Dart app integrating the TMDB REST API. Browse, search, and favorite movies with BLoC state management and responsive grid across mobile, tablet, and desktop.</p>
+        <div class="project-tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">BLoC</span><span class="tag">REST API</span></div>
+        <a href="https://github.com/Emy-04" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card reveal d1">
+        <div class="project-num">02 — Flutter</div>
+        <div class="project-title">Grocery App</div>
+        <p class="project-desc">Cross-platform grocery shopping app with clean UI, efficient state management, and smooth UX across Android and iOS.</p>
+        <div class="project-tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Mobile</span></div>
+        <a href="https://github.com/Emy-04" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card reveal d2">
+        <div class="project-num">03 — Java</div>
+        <div class="project-title">Spring Boot Travel Agency API</div>
+        <p class="project-desc">RESTful API backend for travel booking management using Java Spring Boot. Layered architecture with MySQL persistence for bookings and user accounts.</p>
+        <div class="project-tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span></div>
+        <a href="https://github.com/Emy-04/-Spring-Boot-Travel-Agency-Application" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">04 — C# / Web</div>
+        <div class="project-title">Student Registration System</div>
+        <p class="project-desc">Full-stack course registration portal with C#, ASP.NET Core, JavaScript/jQuery, and SQL Server. Real-time seat availability tracking and course management.</p>
+        <div class="project-tags"><span class="tag">C#</span><span class="tag">ASP.NET</span><span class="tag">SQL Server</span></div>
+        <a href="https://github.com/Emy-04/-Student-Registration-System-Demo" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card reveal d1">
+        <div class="project-num">05 — C# / Desktop</div>
+        <div class="project-title">Library Management System</div>
+        <p class="project-desc">C# desktop application with SQL Server backend for library inventory management, automating borrow/return tracking.</p>
+        <div class="project-tags"><span class="tag">C#</span><span class="tag">SQL Server</span><span class="tag">Desktop</span></div>
+        <a href="https://github.com/Emy-04/Library-Management-" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card reveal d2">
+        <div class="project-num">06 — UI/UX</div>
+        <div class="project-title">Taafi (تعافي) — UI/UX Design</div>
+        <p class="project-desc">HCI course project featuring full UX research, wireframes, and high-fidelity Figma prototype for a wellness application.</p>
+        <div class="project-tags"><span class="tag">Figma</span><span class="tag">UI/UX</span><span class="tag">HCI</span></div>
+        <a href="https://github.com/Emy-04/Taafi-UIUX" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="si">
+    <div class="sec-eyebrow">Credentials</div>
+    <h2 class="sec-title">Certifications &amp; Achievements</h2>
+    <div class="cert-grid">
+      <a href="https://drive.google.com/file/d/1yhGmAnjpDfSyKk2prjmXcwZs7vgsRxCa/view?usp=sharing" target="_blank" class="cert-card reveal">
+        <div class="cert-icon-wrap">🏆</div>
+        <div><div class="cert-title">ISTQB Foundation Certificate in Software Testing</div><div class="cert-issuer">ESTB · Dec 2025</div></div>
+      </a>
+      <div class="cert-card reveal d1">
+        <div class="cert-icon-wrap">🎓</div>
+        <div><div class="cert-title">Java EE — Red Hat Academy</div><div class="cert-issuer">Red Hat · 2025</div></div>
+      </div>
+      <div class="cert-card reveal d2">
+        <div class="cert-icon-wrap">🔴</div>
+        <div><div class="cert-title">Red Hat OpenShift Badge</div><div class="cert-issuer">Red Hat Academy · 2025</div></div>
+      </div>
+      <a href="https://drive.google.com/file/d/1flLj92Ts-BueKOnBMN6Sr6lHB3OwWXBT/view?usp=sharing" target="_blank" class="cert-card reveal">
+        <div class="cert-icon-wrap">📱</div>
+        <div><div class="cert-title">DEPI — Cross-Platform Mobile App Developer</div><div class="cert-issuer">Digital Egypt Pioneers Initiative · Jun–Dec 2025</div></div>
+      </a>
+      <div class="cert-card reveal d1">
+        <div class="cert-icon-wrap">🏅</div>
+        <div><div class="cert-title">ECPC Certificate of Achievement</div><div class="cert-issuer">Egyptian Collegiate Programming Contest</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="si" style="text-align:center;">
+    <div class="sec-eyebrow">Get in touch</div>
+    <h2 class="sec-title">Let's Work Together</h2>
+    <p class="contact-sub">Open to internships, freelance projects, and full-time roles. Feel free to reach out!</p>
+    <div class="contact-links">
+      <a href="mailto:emy.ehab73@gmail.com" class="contact-link">✉ emy.ehab73@gmail.com</a>
+      <a href="https://www.linkedin.com/in/emy-ehab/" target="_blank" class="contact-link">in LinkedIn</a>
+      <a href="https://github.com/Emy-04" target="_blank" class="contact-link">⌥ GitHub</a>
+      <a href="tel:+201277673422" class="contact-link">☎ +20 127 767 3422</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Emy Ihab Fayez</span>
+  <span>Software Engineering · Cairo University</span>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
