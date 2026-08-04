@@ -189,8 +189,32 @@
     .info-card h4 { font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); margin-bottom: .5rem; }
     .info-card p { font-size: .88rem; color: var(--body); line-height: 1.6; }
 
+    /* GRAD PROJECT */
+    #gradproject { background: var(--bg); }
+    .gp-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-top: 3px solid var(--terra); padding: 2.6rem;
+      position: relative; overflow: hidden;
+    }
+    .gp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.2rem; }
+    .gp-title-wrap { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+    .gp-title { font-family: var(--serif); font-size: 1.7rem; color: var(--ink); }
+    .gp-grade {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      background: var(--teal); color: #fff; padding: .3rem .8rem; border-radius: 2px;
+    }
+    .gp-sub { font-size: .85rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .gp-desc { font-size: .92rem; color: var(--body); line-height: 1.8; margin-bottom: 1.4rem; max-width: 760px; }
+    .gp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin-bottom: 1.4rem; }
+    .gp-label { font-size: .68rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--terra); margin-bottom: .5rem; }
+    .gp-row ul { list-style: none; }
+    .gp-row li { font-size: .87rem; color: var(--body); padding: .18rem 0 .18rem 1.2rem; position: relative; line-height: 1.55; }
+    .gp-row li::before { content: '›'; position: absolute; left: 0; color: var(--teal); }
+    .gp-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.6rem; }
+    .gp-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
     /* SKILLS */
-    #skills { background: var(--bg); }
+    #skills { background: var(--bg2); }
     .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
     .skill-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -209,13 +233,21 @@
     .skill-card p { font-size: .85rem; color: var(--muted); line-height: 1.65; }
 
     /* EXPERIENCE */
-    #experience { background: var(--bg2); }
+    #experience { background: var(--bg); }
+    .exp-group { margin-bottom: 3rem; }
+    .exp-group:last-child { margin-bottom: 0; }
+    .exp-group-title {
+      font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 1.6rem; display: flex; align-items: center; gap: .8rem;
+    }
+    .exp-group-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
     .timeline { position: relative; padding-left: 2.4rem; }
     .timeline::before {
       content: ''; position: absolute; left: 4px; top: 8px; bottom: 0;
       width: 1px; background: linear-gradient(to bottom, var(--teal), rgba(29,106,106,0));
     }
     .tl-item { position: relative; padding-bottom: 2.8rem; }
+    .tl-item:last-child { padding-bottom: 0; }
     .tl-item::before {
       content: ''; position: absolute; left: -2.4rem; top: 6px;
       width: 10px; height: 10px; border-radius: 50%;
@@ -230,7 +262,7 @@
     .tl-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--teal); font-size: 1rem; line-height: 1.4; }
 
     /* PROJECTS */
-    #projects { background: var(--bg); }
+    #projects { background: var(--bg2); }
     .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
     .project-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -253,7 +285,7 @@
     .project-link:hover { color: var(--terra); gap: .7rem; }
 
     /* CERTS */
-    #certifications { background: var(--bg2); }
+    #certifications { background: var(--bg); }
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.1rem; }
     .cert-card {
       display: flex; align-items: flex-start; gap: 1.1rem;
@@ -313,6 +345,7 @@
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .gp-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: .4rem; text-align: center; padding: 1.4rem; }
     }
     @media (max-width: 600px) {
@@ -326,6 +359,7 @@
   <div class="nav-logo">Emy <span>Ihab</span></div>
   <div class="nav-links">
     <a href="#about">About</a>
+    <a href="#gradproject">Grad Project</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
@@ -344,17 +378,17 @@
   <div class="hero-content">
     <div class="eyebrow">Open to opportunities</div>
     <h1 class="hero-name">Emy Ihab<br><em>Fayez</em></h1>
-    <p class="hero-role">CS & AI Fresh Graduate · Flutter Developer · Full-Stack · Freelancer</p>
-    <p class="hero-desc">CS & AI fresh graduate with 4 internships, freelance delivery experience, and 12+ projects spanning Flutter mobile apps, Java EE enterprise systems, distributed microservices, ML, and software security.</p>
+    <p class="hero-role">Software Engineering Graduate · Full-Stack Developer · Java &amp; Spring Boot · Open to Work</p>
+    <p class="hero-desc">Recent Computer Science &amp; AI graduate passionate about building scalable software solutions. Experienced in Flutter, Java (Spring Boot, Java EE), ASP.NET Core, Angular, and SQL through 4 internships, freelance delivery, and 12+ academic and personal projects. I enjoy solving real-world problems, collaborating with teams, and continuously learning new technologies — currently seeking opportunities as a Software Engineer or Backend Developer.</p>
     <div class="hero-cta">
-      <a href="#projects" class="btn-fill">View Projects →</a>
+      <a href="#gradproject" class="btn-fill">Grad Project →</a>
       <a href="https://github.com/Emy-04" target="_blank" class="btn-ghost">GitHub ↗</a>
       <a href="https://www.linkedin.com/in/emy-ehab/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
     </div>
     <div class="hero-stats">
       <div><div class="stat-num">12<sup>+</sup></div><div class="stat-label">Projects</div></div>
       <div><div class="stat-num">4<sup>+</sup></div><div class="stat-label">Internships</div></div>
-      <div><div class="stat-num">3.32<sup>/4</sup></div><div class="stat-label">GPA</div></div>
+      <div><div class="stat-num">3.35<sup>/4</sup></div><div class="stat-label">GPA · B+</div></div>
       <div><div class="stat-num">5<sup>+</sup></div><div class="stat-label">Certifications</div></div>
     </div>
   </div>
@@ -367,7 +401,7 @@
     <h2 class="sec-title">About Me</h2>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>I'm a Software Engineering student at Cairo University's Faculty of Computer Science and Artificial Intelligence, graduating July 2026.</p>
+        <p>I'm a Software Engineering student at Cairo University's Faculty of Computer Science and Artificial Intelligence, graduating August 2026.</p>
         <blockquote class="pq">"Building smart, scalable software with passion and precision."</blockquote>
         <p>I specialize in cross-platform mobile development with Flutter, full-stack web applications, and backend REST services. Driven by curiosity — whether exploring new technologies, designing better UX, or improving architecture.</p>
         <p>When I'm not coding, I enjoy reading about technology trends, solving logic puzzles, and learning new skills.</p>
@@ -375,7 +409,7 @@
       <div class="info-cards">
         <div class="info-card reveal d1">
           <h4>Education</h4>
-          <p>B.Sc. Computer Science &amp; AI<br>Cairo University · GPA 3.32/4.0<br>Sep 2022 – Expected Jul 2026</p>
+          <p>B.Sc. Computer Science &amp; AI<br>Cairo University · GPA 3.35/4.0 (B+)<br>Sep 2022 – Expected Aug 2026</p>
         </div>
         <div class="info-card reveal d2">
           <h4>Languages</h4>
@@ -385,6 +419,54 @@
           <h4>Location</h4>
           <p>Cairo, Egypt<br>Open to remote &amp; on-site roles</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRADUATION PROJECT -->
+<section id="gradproject">
+  <div class="si">
+    <div class="sec-eyebrow">Graduation Project</div>
+    <h2 class="sec-title">FocusShift</h2>
+    <div class="gp-card reveal">
+      <div class="gp-top">
+        <div class="gp-title-wrap">
+          <div class="gp-title">FocusShift — Privacy-First VS Code Extension</div>
+          <span class="gp-grade">Grade: A</span>
+        </div>
+      </div>
+      <div class="gp-sub">Cairo University · Faculty of Computing &amp; AI · Academic Year 2025–2026 · Team of 5</div>
+      <p class="gp-desc">A privacy-first VS Code extension that solves a real developer pain point: context-switching. It automatically detects interruptions (window blur or inactivity), locally saves the developer's exact working context, and restores it the moment they return — with an AI-generated summary and audio cue. All processing is 100% local and offline; no code ever leaves the developer's machine.</p>
+      <div class="gp-row">
+        <div>
+          <div class="gp-label">My Role</div>
+          <ul>
+            <li>Built the configurable audio chime notification service</li>
+            <li>Contributed to VS Code Extension API research &amp; early prototyping</li>
+            <li>Fixed a config-key bug that caused the LLM branch to always run regardless of settings</li>
+            <li>Fixed a missing command registration that silently broke the restore button</li>
+            <li>Contributed to cross-platform performance benchmarking (50 runs × Windows/macOS/Linux)</li>
+            <li>Presented core technical sections at the graduation defense</li>
+          </ul>
+        </div>
+        <div>
+          <div class="gp-label">Key Results</div>
+          <ul>
+            <li>Sub-one-second context restoration on all target platforms</li>
+            <li>13/13 functional test cases passed across 3 operating systems</li>
+            <li>100% local &amp; offline — zero external data transmission</li>
+            <li>Positive usability results from a 5-developer field study</li>
+          </ul>
+        </div>
+      </div>
+      <div class="gp-tags">
+        <span class="tag">TypeScript</span><span class="tag">VS Code Extension API</span>
+        <span class="tag">Node.js</span><span class="tag">Ollama (LLM)</span>
+        <span class="tag">Memento API</span><span class="tag">Jest</span>
+      </div>
+      <div class="gp-links">
+        <a href="https://github.com/Mariammazen147/FocusShift" target="_blank" class="project-link">View on GitHub →</a>
       </div>
     </div>
   </div>
@@ -410,52 +492,77 @@
 <section id="experience">
   <div class="si">
     <div class="sec-eyebrow">Where I've worked</div>
-    <h2 class="sec-title">Work Experience</h2>
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-date">2024 – Present</div>
-        <div class="tl-role">Freelance Flutter Developer</div>
-        <div class="tl-company">Nafezly Platform (nafezly.com)</div>
-        <ul class="tl-bullets">
-          <li>Delivered 2 Flutter mobile application projects for clients through the Nafezly freelancing platform, covering full development lifecycle from UI implementation to final delivery</li>
-          <li>Built cross-platform apps with clean architecture, state management, and responsive design across Android and iOS</li>
-        </ul>
+    <h2 class="sec-title">Experience</h2>
+
+    <div class="exp-group">
+      <div class="exp-group-title">Internships</div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-date">Jun 2025 – Dec 2025</div>
+          <div class="tl-role">Flutter Mobile Developer Intern</div>
+          <div class="tl-company">Digital Egypt Pioneers Initiative — Ministry of Communication &amp; IT</div>
+          <ul class="tl-bullets">
+            <li>Built Flutter/Dart mobile apps across 3 shipped features applying BLoC state management, reducing widget rebuild overhead by ~40%</li>
+            <li>Developed responsive layouts supporting 4 screen breakpoints (mobile, tablet, desktop, web)</li>
+            <li>Implemented feature-complete UI screens from Figma designs, maintaining pixel-level consistency across iOS and Android</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">Aug 2024</div>
+          <div class="tl-role">Web Development Intern</div>
+          <div class="tl-company">MCV — Web &amp; Software Solutions</div>
+          <ul class="tl-bullets">
+            <li>Built ASP.NET Core MVC modules with SQL Server CRUD APIs, applying OOP design principles across 5+ controllers</li>
+            <li>Delivered 3+ data-driven web pages using C# and ASP.NET Core, integrating dynamic SQL queries</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">Jul 2024</div>
+          <div class="tl-role">Web Development Intern</div>
+          <div class="tl-company">Mintra</div>
+          <ul class="tl-bullets">
+            <li>Built 5+ ASP.NET Razor views with server-side data binding and client/server form validation, streamlining internal data-entry workflows</li>
+            <li>Implemented form validation across 5+ ASP.NET views, cutting data-entry errors by 30%</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">Jul 2023</div>
+          <div class="tl-role">Web Development Intern</div>
+          <div class="tl-company">MCV — Web &amp; Software Solutions</div>
+          <ul class="tl-bullets">
+            <li>Delivered 3+ responsive, data-driven ASP.NET Core pages with SQL Server CRUD integration, supporting internal workflow tools</li>
+          </ul>
+        </div>
       </div>
-      <div class="tl-item reveal">
-        <div class="tl-date">Jun 2025 – Dec 2025</div>
-        <div class="tl-role">Flutter Mobile Developer Intern</div>
-        <div class="tl-company">Digital Egypt Pioneers Initiative — Ministry of Communication &amp; IT</div>
-        <ul class="tl-bullets">
-          <li>Built Flutter/Dart mobile apps across 3 shipped features applying BLoC state management, reducing widget rebuild overhead by ~40%</li>
-          <li>Developed responsive layouts supporting 4 screen breakpoints (mobile, tablet, desktop, web)</li>
-          <li>Implemented feature-complete UI screens from Figma designs, maintaining pixel-level consistency across iOS and Android</li>
-        </ul>
+    </div>
+
+    <div class="exp-group">
+      <div class="exp-group-title">Freelance</div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-date">2024 – Present</div>
+          <div class="tl-role">Freelance Flutter Developer</div>
+          <div class="tl-company">Nafezly Platform (nafezly.com)</div>
+          <ul class="tl-bullets">
+            <li>Delivered 2 Flutter mobile application projects for clients through the Nafezly freelancing platform, covering full development lifecycle from UI implementation to final delivery</li>
+            <li>Built cross-platform apps with clean architecture, state management, and responsive design across Android and iOS</li>
+          </ul>
+        </div>
       </div>
-      <div class="tl-item reveal">
-        <div class="tl-date">Aug 2024</div>
-        <div class="tl-role">Web Development Intern</div>
-        <div class="tl-company">MCV — Web &amp; Software Solutions</div>
-        <ul class="tl-bullets">
-          <li>Built ASP.NET Core MVC modules with SQL Server CRUD APIs, applying OOP design principles across 5+ controllers</li>
-          <li>Delivered 3+ data-driven web pages using C# and ASP.NET Core, integrating dynamic SQL queries</li>
-        </ul>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-date">Jul 2024</div>
-        <div class="tl-role">Web Development Intern</div>
-        <div class="tl-company">Mintra</div>
-        <ul class="tl-bullets">
-          <li>Built 5+ ASP.NET Razor views with server-side data binding and client/server form validation, streamlining internal data-entry workflows</li>
-          <li>Implemented form validation across 5+ ASP.NET views, cutting data-entry errors by 30%</li>
-        </ul>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-date">Jul 2023</div>
-        <div class="tl-role">Web Development Intern</div>
-        <div class="tl-company">MCV — Web &amp; Software Solutions</div>
-        <ul class="tl-bullets">
-          <li>Delivered 3+ responsive, data-driven ASP.NET Core pages with SQL Server CRUD integration, supporting internal workflow tools</li>
-        </ul>
+    </div>
+
+    <div class="exp-group">
+      <div class="exp-group-title">Academic Projects</div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-date">2022 – 2026</div>
+          <div class="tl-role">Graduation Project &amp; 12+ Course Projects</div>
+          <div class="tl-company">Cairo University — Faculty of Computing &amp; AI</div>
+          <ul class="tl-bullets">
+            <li>Led development of FocusShift, a graduation project VS Code extension (Grade A) — see dedicated section above</li>
+            <li>Built enterprise, mobile, ML, and security projects spanning Java EE, Spring Boot, Angular, Flutter, and Python — see Projects section below</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -465,7 +572,7 @@
 <section id="projects">
   <div class="si">
     <div class="sec-eyebrow">What I've built</div>
-    <h2 class="sec-title">Projects</h2>
+    <h2 class="sec-title">Other Projects</h2>
     <div class="projects-grid">
       <div class="project-card reveal">
         <div class="project-num">01 — Java EE</div>
@@ -601,7 +708,7 @@
 </section>
 
 <footer>
-  <span>© 2025 Emy Ihab Fayez</span>
+  <span>© 2026 Emy Ihab Fayez</span>
   <span>Software Engineering · Cairo University</span>
 </footer>
 
